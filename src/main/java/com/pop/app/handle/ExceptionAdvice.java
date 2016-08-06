@@ -28,12 +28,8 @@ public class ExceptionAdvice {
     @ResponseBody
     public ResultResponse handleException(Exception ex) {
         ResultResponse exceptionData = null;
-        Throwable exception = getHasInfoException(ex);
-        if (exception == null) {
-            exceptionData = new ResultResponse();
-            exceptionData.setResult(ClientCode.SYSTEM_WRONG.getCode());
-            exceptionData.setErrorMsg(ClientCode.SYSTEM_WRONG.getMsg());
-        } else {
+        if(ex instanceof ExceptionInfoGetter){//自定义异常
+            Throwable exception = getHasInfoException(ex);
             ExceptionInfo exceptionInfo = ((ExceptionInfoGetter) exception).getInfo();
             String message  = exceptionInfo.getMessage();;
             Integer code = exceptionInfo.getCode();
@@ -44,8 +40,31 @@ public class ExceptionAdvice {
             exceptionData = new ResultResponse();
             exceptionData.setResult(code);
             exceptionData.setErrorMsg(message);
+        }else if (ex instanceof IllegalArgumentException){//参数校验异常
+            String message  = ex.getMessage();;
+
+            if (StringUtils.isEmpty(message)) {
+                message = ClientCode.SYSTEM_WRONG.getMsg();
+            }
+            exceptionData = new ResultResponse();
+            exceptionData.setResult(ClientCode.ARGUMENT_WRONG.getCode());
+            exceptionData.setErrorMsg(message);
+        }else if (ex instanceof NullPointerException){//必填参数为空异常
+            String message  = ex.getMessage();;
+
+            if (StringUtils.isEmpty(message)) {
+                message = ClientCode.SYSTEM_WRONG.getMsg();
+            }
+            exceptionData = new ResultResponse();
+            exceptionData.setResult(ClientCode.NULL_WRONG.getCode());
+            exceptionData.setErrorMsg(message);
         }
 
+        else {
+            exceptionData = new ResultResponse();
+            exceptionData.setResult(ClientCode.SYSTEM_WRONG.getCode());
+            exceptionData.setErrorMsg(ClientCode.SYSTEM_WRONG.getMsg());
+        }
         logger.error("exception code:" + exceptionData.getResult() + ",exception message:" + exceptionData.getErrorMsg(),
                 ex);
 
@@ -53,11 +72,7 @@ public class ExceptionAdvice {
     }
 
     private Throwable getHasInfoException(Throwable throwable) {
-        Throwable exception = null;
-
-        if (throwable instanceof ExceptionInfoGetter) {
-            exception = (Exception) throwable;
-        }
+        Throwable exception = (Exception) throwable;
 
         Throwable childThrowable = null;
         if (throwable instanceof UndeclaredThrowableException) {

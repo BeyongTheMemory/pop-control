@@ -13,6 +13,8 @@ public enum ClientCode {
 
 
     SYSTEM_WRONG(-200, "系统繁忙，请稍后重试"),
+    ARGUMENT_WRONG(-201, "请求参数不合法"),
+    NULL_WRONG(-202, "空值错误"),
     ;
 
     private int code;

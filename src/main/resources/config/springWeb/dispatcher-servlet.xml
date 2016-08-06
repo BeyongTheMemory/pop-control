@@ -16,6 +16,9 @@
 
     <context:component-scan base-package="com.pop.app.rest,com.pop.app.handle"/>
     <mvc:annotation-driven content-negotiation-manager="contentManager">
+        <mvc:argument-resolvers>
+            <bean class="com.pop.security.resolver.AccountArgumentResolver" />
+        </mvc:argument-resolvers >
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="objectMapper">
@@ -61,6 +64,9 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <mvc:interceptors>
+        <bean class="com.pop.security.interceptor.NeedRolesInterceptor" />
+    </mvc:interceptors>
 
 
     <bean class="com.pop.swagger.ExSpringSwaggerConfig" />

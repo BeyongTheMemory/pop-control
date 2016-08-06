@@ -22,6 +22,5 @@
         <level value="INFO" />
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="rootAppender" />
-        <appender-ref ref="catAppender"/>
     </root>
 </log4j:configuration>
