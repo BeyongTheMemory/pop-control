@@ -8,6 +8,8 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
 public class LoginRequest {
     private String account;
     private String password;
+    private String ip;
+
 
     public String getAccount() {
         return account;
@@ -25,5 +27,14 @@ public class LoginRequest {
     @ApiModelProperty(value = "密码")
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    @ApiModelProperty(value = "IP")
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 }

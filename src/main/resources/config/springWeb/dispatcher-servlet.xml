@@ -20,6 +20,7 @@
             <bean class="com.pop.security.resolver.AccountArgumentResolver" />
         </mvc:argument-resolvers >
         <mvc:message-converters>
+            <!--<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>-->
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="objectMapper">
                     <bean class="com.pop.mvc.ExObjectMapper" />
