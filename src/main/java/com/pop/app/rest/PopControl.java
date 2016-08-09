@@ -69,7 +69,7 @@ public class PopControl {
         PopResponse popResponse = new PopResponse();
         Pageable pageable = new Pageable(getPopRequest.getPageNumber(), getPopRequest.getPageSize());
         Page<PopDto> popDtoPage = popService.getPop(getPopRequest.getLat(), getPopRequest.getLon(), getPopRequest.getRange(), pageable);
-        if (CollectionUtils.isEmpty(popDtoPage.getContent())) {//附近没有泡泡
+        if (CollectionUtils.isEmpty(popDtoPage.getContent())) {//这里改一下,附近没有泡泡就去获取漂浮泡泡
             popDtoPage.getContent().add(defaultPop(getPopRequest.getLat(), getPopRequest.getLon()));
         }
         popResponse.setPopDtoPage(popDtoPage);

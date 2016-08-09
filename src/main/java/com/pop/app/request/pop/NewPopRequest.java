@@ -11,6 +11,7 @@ public class NewPopRequest {
     private int model;
     private String imgUrl;
     private String message;
+    private int isShowy;
 
     public int getType() {
         return type;
@@ -66,5 +67,13 @@ public class NewPopRequest {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public int getIsShowy() {
+        return isShowy;
+    }
+
+    public void setIsShowy(int isShowy) {
+        this.isShowy = isShowy;
     }
 }
