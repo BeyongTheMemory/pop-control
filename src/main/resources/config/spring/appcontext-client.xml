@@ -12,4 +12,5 @@
     <dubbo:reference id="userService" interface="com.pop.uc.service.UserService"/>
     <dubbo:reference id="popService" interface="com.pop.center.service.PopService"/>
 
+
 </beans>

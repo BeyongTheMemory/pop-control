@@ -56,6 +56,8 @@ public class FileControl {
         return client.getUrl(filePath);
     }
 
+
+
 //    @ApiResponses(value = {@ApiResponse(code = 200, message = "请求成功")})
 //    @ApiOperation(value = "下载文件", notes = "下载文件")
 //    @RequestMapping(value = "/download", method = RequestMethod.POST)
