@@ -1,6 +1,7 @@
 package com.pop.app.rest;
 
 import com.pop.app.response.qiniu.TokenResponse;
+import com.pop.security.annotion.NeedRoles;
 import com.qiniu.util.Auth;
 import com.wordnik.swagger.annotations.*;
 import ocean.fastdfs.FastdfsClientFactory;
@@ -32,11 +33,11 @@ public class QiNiuControl {
 
 
     String headBucketName = "headimg";
-    String headBucketUrl = "ocf14swfc.bkt.clouddn.com/";
 
     @ApiResponses(value = {@ApiResponse(code = 200, message = "请求成功")})
     @ApiOperation(value = "获取token", notes = "获取token")
     @RequestMapping(value = "/getToken", method = RequestMethod.POST)
+    @NeedRoles
     public TokenResponse getToken(@RequestParam("type")String type) {
         Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
         String token = "";
