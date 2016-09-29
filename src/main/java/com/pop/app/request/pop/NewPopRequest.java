@@ -5,13 +5,15 @@ package com.pop.app.request.pop;
  */
 public class NewPopRequest {
     private int type;
-    private long longitude;
-    private long latitude;
-    private long altitude;
+    private double longitude;
+    private double latitude;
+    private double altitude;
     private int model;
     private String imgUrl;
     private String message;
     private int isShowy;
+    public int onlyOnce;
+    private int anonymous;
 
     public int getType() {
         return type;
@@ -21,27 +23,27 @@ public class NewPopRequest {
         this.type = type;
     }
 
-    public long getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(long longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public long getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(long latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public long getAltitude() {
+    public double getAltitude() {
         return altitude;
     }
 
-    public void setAltitude(long altitude) {
+    public void setAltitude(double altitude) {
         this.altitude = altitude;
     }
 
@@ -75,5 +77,21 @@ public class NewPopRequest {
 
     public void setIsShowy(int isShowy) {
         this.isShowy = isShowy;
+    }
+
+    public int getOnlyOnce() {
+        return onlyOnce;
+    }
+
+    public void setOnlyOnce(int onlyOnce) {
+        this.onlyOnce = onlyOnce;
+    }
+
+    public int getAnonymous() {
+        return anonymous;
+    }
+
+    public void setAnonymous(int anonymous) {
+        this.anonymous = anonymous;
     }
 }

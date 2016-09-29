@@ -55,7 +55,11 @@ public class PopControl {
         PopNewDto popNewDto = new PopNewDto();
         BeanUtils.copyProperties(newPopRequest, popNewDto);
         popNewDto.setUserId(userDto.getId());
-        popNewDto.setUserName(userDto.getName());
+        if(newPopRequest.getAnonymous() == 1) {//匿名
+            popNewDto.setUserName("匿名");
+        }else {
+            popNewDto.setUserName(userDto.getName());
+        }
         popNewDto.setUserHeadUrl(userDto.getHeadUrl());
         popNewDto.setUserIntroduction(userDto.getIntroduction());
         popService.save(popNewDto);
