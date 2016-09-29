@@ -4,17 +4,19 @@ import com.pop.app.response.Response;
 import com.pop.center.dto.PopDto;
 import com.pop.mybatis.entity.Page;
 
+import java.util.List;
+
 /**
  * Created by xugang on 16/8/9.
  */
 public class PopResponse extends Response{
-    private Page<PopDto> popDtoPage;
+    private List<PopDto> popDtoList;
 
-    public Page<PopDto> getPopDtoPage() {
-        return popDtoPage;
+    public List<PopDto> getPopDtoList() {
+        return popDtoList;
     }
 
-    public void setPopDtoPage(Page<PopDto> popDtoPage) {
-        this.popDtoPage = popDtoPage;
+    public void setPopDtoList(List<PopDto> popDtoList) {
+        this.popDtoList = popDtoList;
     }
 }

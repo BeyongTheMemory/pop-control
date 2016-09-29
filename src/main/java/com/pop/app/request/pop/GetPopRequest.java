@@ -8,9 +8,7 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
 public class GetPopRequest {
     private double lat;
     private double lon;
-    private int range;
-    private int pageNumber;
-    private int pageSize;
+
 
     public double getLat() {
         return lat;
@@ -29,27 +27,4 @@ public class GetPopRequest {
         this.lon = lon;
     }
 
-    public int getRange() {
-        return range;
-    }
-    @ApiModelProperty(value = "范围,m")
-    public void setRange(int range) {
-        this.range = range;
-    }
-
-    public int getPageNumber() {
-        return pageNumber;
-    }
-
-    public void setPageNumber(int pageNumber) {
-        this.pageNumber = pageNumber;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
 }

@@ -34,6 +34,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by xugang on 16/8/2.
@@ -67,12 +68,8 @@ public class PopControl {
     @NeedRoles
     public PopResponse getPop(@RequestBody GetPopRequest getPopRequest) {
         PopResponse popResponse = new PopResponse();
-        Pageable pageable = new Pageable(getPopRequest.getPageNumber(), getPopRequest.getPageSize());
-        Page<PopDto> popDtoPage = popService.getPop(getPopRequest.getLat(), getPopRequest.getLon(), getPopRequest.getRange(), pageable);
-        if (CollectionUtils.isEmpty(popDtoPage.getContent())) {//这里改一下,附近没有泡泡就去获取漂浮泡泡
-            popDtoPage.getContent().add(defaultPop(getPopRequest.getLat(), getPopRequest.getLon()));
-        }
-        popResponse.setPopDtoPage(popDtoPage);
+        List<PopDto> popDtoList = popService.getPop(getPopRequest.getLat(), getPopRequest.getLon());
+        popResponse.setPopDtoList(popDtoList);
         return popResponse;
     }
 
@@ -99,12 +96,7 @@ public class PopControl {
         return popMessageResponse;
     }
 
-    private PopDto defaultPop(double lat, double lon) {
-        PopDto popDto = new PopDto();
-        popDto.setLatitude(lat);
-        popDto.setLongitude(lon);
-        return popDto;
-    }
+
 
 
 }
