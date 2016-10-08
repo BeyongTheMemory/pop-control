@@ -2,6 +2,7 @@ package com.pop.app.rest;
 
 import com.alibaba.dubbo.common.utils.CollectionUtils;
 import com.google.common.base.Preconditions;
+import com.pop.app.enums.Url;
 import com.pop.app.request.pop.GetPopRequest;
 import com.pop.app.request.pop.NewPopRequest;
 import com.pop.app.request.user.LoginRequest;
@@ -62,6 +63,9 @@ public class PopControl {
         }
         popNewDto.setUserHeadUrl(userDto.getHeadUrl());
         popNewDto.setUserIntroduction(userDto.getIntroduction());
+        popNewDto.setImgUrl(Url.imgUrl+popNewDto.getImgUrl());
+        popNewDto.setSex(userDto.getSex());
+        popNewDto.setIntroduction(userDto.getIntroduction());
         popService.save(popNewDto);
         return response;
     }
