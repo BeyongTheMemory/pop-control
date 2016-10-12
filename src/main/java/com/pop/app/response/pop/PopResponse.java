@@ -1,7 +1,7 @@
 package com.pop.app.response.pop;
 
 import com.pop.app.response.Response;
-import com.pop.center.dto.PopDto;
+import com.pop.center.dto.pop.PopDto;
 import com.pop.mybatis.entity.Page;
 
 import java.util.List;

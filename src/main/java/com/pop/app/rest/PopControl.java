@@ -3,6 +3,7 @@ package com.pop.app.rest;
 import com.alibaba.dubbo.common.utils.CollectionUtils;
 import com.google.common.base.Preconditions;
 import com.pop.app.enums.Url;
+import com.pop.app.request.pop.AddMessageRequest;
 import com.pop.app.request.pop.GetPopRequest;
 import com.pop.app.request.pop.NewPopRequest;
 import com.pop.app.request.user.LoginRequest;
@@ -13,11 +14,11 @@ import com.pop.app.response.pop.PopInfoResponse;
 import com.pop.app.response.pop.PopMessageResponse;
 import com.pop.app.response.pop.PopResponse;
 import com.pop.app.response.user.UserDtoResponse;
-import com.pop.center.dto.PopDto;
-import com.pop.center.dto.PopInfoDto;
-import com.pop.center.dto.PopMessageDto;
-import com.pop.center.dto.PopNewDto;
-import com.pop.center.service.PopService;
+import com.pop.center.dto.pop.PopDto;
+import com.pop.center.dto.pop.PopInfoDto;
+import com.pop.center.dto.pop.PopMessageDto;
+import com.pop.center.dto.pop.PopNewDto;
+import com.pop.center.service.pop.PopService;
 import com.pop.mybatis.entity.Page;
 import com.pop.mybatis.entity.Pageable;
 import com.pop.security.annotion.NeedRoles;
@@ -102,6 +103,27 @@ public class PopControl {
         Page<PopMessageDto> popMessageDtoPage = popService.getMessage(popId,pageable);
         popMessageResponse.setPopMessageDtoPage(popMessageDtoPage);
         return popMessageResponse;
+    }
+
+
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "请求成功")})
+    @ApiOperation(value = "评价泡泡", notes = "评价泡泡")
+    @RequestMapping(value = "/addPopMessage", method = RequestMethod.POST)
+    @NeedRoles
+    public Response addPopMessage(@RequestBody AddMessageRequest addMessageRequest,@SessionAccount UserDto userDto) {
+        Response response = new ResultResponse();
+        PopMessageDto popMessageDto = new PopMessageDto();
+        popMessageDto.setMessage(addMessageRequest.getMessage());
+        popMessageDto.setPopId(addMessageRequest.getPopId());
+        popMessageDto.setLatitude(addMessageRequest.getLatitude());
+        popMessageDto.setLongitude(addMessageRequest.getLongitude());
+        popMessageDto.setUserId(userDto.getId());
+        popMessageDto.setUserName(userDto.getName());
+        popMessageDto.setUserHeadUrl(userDto.getHeadUrl());
+        popMessageDto.setIntroduction(userDto.getIntroduction());
+        popMessageDto.setSex(userDto.getSex());
+        popService.addMessage(popMessageDto);
+        return response;
     }
 
 

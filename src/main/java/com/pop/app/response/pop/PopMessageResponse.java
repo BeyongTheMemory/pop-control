@@ -1,12 +1,13 @@
 package com.pop.app.response.pop;
 
-import com.pop.center.dto.PopMessageDto;
+import com.pop.app.response.Response;
+import com.pop.center.dto.pop.PopMessageDto;
 import com.pop.mybatis.entity.Page;
 
 /**
  * Created by xugang on 16/8/9.
  */
-public class PopMessageResponse {
+public class PopMessageResponse extends Response {
     private Page<PopMessageDto> popMessageDtoPage;
 
     public Page<PopMessageDto> getPopMessageDtoPage() {
