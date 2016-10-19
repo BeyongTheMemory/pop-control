@@ -10,7 +10,8 @@
     <dubbo:registry protocol="zookeeper" address="${zk.registry}"/>
 
     <dubbo:reference id="userService" interface="com.pop.uc.service.UserService"/>
-    <dubbo:reference id="popService" interface="com.pop.center.service.PopService"/>
+    <dubbo:reference id="popService" interface="com.pop.center.service.pop.PopService"/>
+    <dubbo:reference id="noteService" interface="com.pop.center.service.message.NoteService"/>
 
 
 </beans>

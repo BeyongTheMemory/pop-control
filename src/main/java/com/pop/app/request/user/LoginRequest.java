@@ -9,7 +9,8 @@ public class LoginRequest {
     private String account;
     private String password;
     private String ip;
-
+    private String clintId;
+    private int clientType;//1:android,2:ios
 
     public String getAccount() {
         return account;
@@ -36,5 +37,21 @@ public class LoginRequest {
     @ApiModelProperty(value = "IP")
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public String getClintId() {
+        return clintId;
+    }
+    @ApiModelProperty(value = "设备号")
+    public void setClintId(String clintId) {
+        this.clintId = clintId;
+    }
+
+    public int getClientType() {
+        return clientType;
+    }
+    @ApiModelProperty(value = "设备类型 1:andorid 2:ios")
+    public void setClientType(int clientType) {
+        this.clientType = clientType;
     }
 }

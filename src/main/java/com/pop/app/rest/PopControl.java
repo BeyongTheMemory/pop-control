@@ -86,7 +86,7 @@ public class PopControl {
     @ApiOperation(value = "获取泡泡详情", notes = "获取泡泡详情")
     @RequestMapping(value = "/getPopInfo", method = RequestMethod.POST)
     @NeedRoles
-    public PopInfoResponse getPopInfo(@RequestParam("popId") long popId) {
+    public PopInfoResponse getPopInfo(@RequestParam(value = "popId") long popId) {
         PopInfoDto popInfoDto = popService.getPopInfo(popId);
         PopInfoResponse popInfoResponse = new PopInfoResponse();
         popInfoResponse.setPopInfoDto(popInfoDto);
@@ -97,7 +97,7 @@ public class PopControl {
     @ApiOperation(value = "获取泡泡评论列表", notes = "获取泡泡评论列表")
     @RequestMapping(value = "/getPopMessage", method = RequestMethod.POST)
     @NeedRoles
-    public PopMessageResponse getPopMessage(@RequestParam("popId") long popId,@RequestParam("pageNumber")int pageNumber,@RequestParam("pageSize")int pageSize) {
+    public PopMessageResponse getPopMessage(@RequestParam(value ="popId") long popId,@RequestParam(value ="pageNumber")int pageNumber,@RequestParam(value ="pageSize")int pageSize) {
         PopMessageResponse popMessageResponse = new PopMessageResponse();
         Pageable pageable = new Pageable(pageNumber,pageSize);
         Page<PopMessageDto> popMessageDtoPage = popService.getMessage(popId,pageable);
